@@ -1,0 +1,15 @@
+{
+  "id": 1,
+  "content": "content4",
+  "user": {
+    "id": 1,
+    "name": "user1",
+    "email": "user1mail.com",
+    "password": "password",
+    "creationDate": "12/02/2023"
+  },
+  "vote": {
+    "id": 1,
+    "name": "vote"
+  }
+}
