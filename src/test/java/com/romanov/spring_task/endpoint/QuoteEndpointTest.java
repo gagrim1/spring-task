@@ -10,7 +10,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @Sql(value = {
-        "/endpoint/truncate.sql",
         "/endpoint/vote_init.sql",
         "/endpoint/user_init.sql",
         "/endpoint/quote_init.sql"
@@ -21,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class QuoteEndpointTest extends EndpointTest {
     @Test
     void shouldAddQuote() throws Exception {
-        mockMvc.perform(get("/quotes/all").param("page", "1").param("size", "10")
+        mockMvc.perform(get("/quotes/all-desc").param("page", "1").param("size", "10")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.content.[0].id").value(1))
@@ -34,7 +33,7 @@ public class QuoteEndpointTest extends EndpointTest {
                         .content(fromFile("/endpoint/json/quote_input.json")))
                 .andExpect(status().isOk());
 
-        mockMvc.perform(get("/quotes/all").param("page", "1").param("size", "10")
+        mockMvc.perform(get("/quotes/all-asc").param("page", "1").param("size", "10")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.content.[0].id").value(1))
@@ -45,7 +44,7 @@ public class QuoteEndpointTest extends EndpointTest {
 
     @Test
     void shouldPatchQuote() throws Exception {
-        mockMvc.perform(get("/quotes/all").param("page", "1").param("size", "10")
+        mockMvc.perform(get("/quotes/all-desc").param("page", "1").param("size", "10")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.content.[0].id").value(1))
@@ -56,7 +55,7 @@ public class QuoteEndpointTest extends EndpointTest {
                         .content(fromFile("/endpoint/json/quote_patch_input.json")))
                 .andExpect(status().isOk());
 
-        mockMvc.perform(get("/quotes/all").param("page", "1").param("size", "10")
+        mockMvc.perform(get("/quotes/all-desc").param("page", "1").param("size", "10")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.content.[0].id").value(1))
@@ -78,7 +77,7 @@ public class QuoteEndpointTest extends EndpointTest {
 
     @Test
     void shouldReturnQuotes() throws Exception {
-        mockMvc.perform(get("/quotes/all").param("page", "1").param("size", "10")
+        mockMvc.perform(get("/quotes/all-desc").param("page", "1").param("size", "10")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.content.[0].id").value(1))
@@ -88,7 +87,7 @@ public class QuoteEndpointTest extends EndpointTest {
 
     @Test
     void shouldDeleteQuote() throws Exception {
-        mockMvc.perform(get("/quotes/all").param("page", "1").param("size", "10")
+        mockMvc.perform(get("/quotes/all-desc").param("page", "1").param("size", "10")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.content.[0].id").value(1))
@@ -99,7 +98,7 @@ public class QuoteEndpointTest extends EndpointTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
-        mockMvc.perform(get("/quotes/all").param("page", "1").param("size", "10")
+        mockMvc.perform(get("/quotes/all-desc").param("page", "1").param("size", "10")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.content.[0].id").value(1))

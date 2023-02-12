@@ -8,7 +8,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Sql(value = {
-        "/endpoint/truncate.sql",
         "/endpoint/user_init.sql"
 },
         executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)

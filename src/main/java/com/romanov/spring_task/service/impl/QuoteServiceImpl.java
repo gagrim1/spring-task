@@ -11,10 +11,7 @@ import com.romanov.spring_task.model.entity.QuoteEntity;
 import com.romanov.spring_task.repository.QuoteRepository;
 import com.romanov.spring_task.service.QuoteService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -40,9 +37,9 @@ public class QuoteServiceImpl implements QuoteService {
     }
 
     @Override
-    public Page<QuoteOutput> getAll(Integer page, Integer size) {
+    public Page<QuoteOutput> getAll(Integer page, Integer size, Sort sort) {
         Pageable pageable = PageRequest.of(page, size);
-        List<QuoteOutput> list = repository.findAll()
+        List<QuoteOutput> list = repository.findAll(sort)
                 .stream()
                 .map(mapper::convert)
                 .toList();

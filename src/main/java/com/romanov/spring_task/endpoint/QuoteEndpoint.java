@@ -7,7 +7,8 @@ import org.springframework.data.domain.Page;
 
 public interface QuoteEndpoint {
     QuoteOutput add(QuoteInput input);
-    Page<QuoteOutput> getAll(Integer page, Integer size);
+    Page<QuoteOutput> getAllAsc(Integer page, Integer size);
+    Page<QuoteOutput> getAllDesc(Integer page, Integer size);
     QuoteOutput getRandomQuote();
     QuoteOutput modifyQuote(QuoteUpdateInput input);
     void delete(Long id);

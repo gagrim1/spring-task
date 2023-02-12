@@ -7,6 +7,7 @@ import com.romanov.spring_task.model.dto.QuoteUpdateInput;
 import com.romanov.spring_task.service.QuoteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,10 +23,15 @@ public class QuoteEndpointImpl implements QuoteEndpoint {
     }
 
     @Override
-    @GetMapping("/all")
-    public Page<QuoteOutput> getAll(@RequestParam("page") Integer page, @RequestParam("size") Integer size) {
-        Page<QuoteOutput> pages = service.getAll(page, size);
-        return service.getAll(page, size);
+    @GetMapping("/all-asc")
+    public Page<QuoteOutput> getAllAsc(Integer page, Integer size) {
+        return service.getAll(page, size, Sort.by(Sort.Direction.ASC, "updateDate"));
+    }
+
+    @Override
+    @GetMapping("/all-desc")
+    public Page<QuoteOutput> getAllDesc(Integer page, Integer size) {
+        return service.getAll(page, size, Sort.by(Sort.Direction.DESC, "updateDate"));
     }
 
     @Override
