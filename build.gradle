@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'io.spring.dependency-management' version "1.0.11.RELEASE"
+    id 'org.springframework.boot' version "2.7.2"
+}
+
+application {
+    mainClass = 'com.romanov.spring_task.Application'
+}
+
+
+group 'com.romanov.spring-task'
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+}
