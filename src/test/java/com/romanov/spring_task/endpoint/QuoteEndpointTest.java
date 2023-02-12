@@ -1,12 +1,8 @@
 package com.romanov.spring_task.endpoint;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.jdbc.Sql;
-
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -22,7 +18,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(value = "/endpoint/truncate.sql",
         executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-
 public class QuoteEndpointTest extends EndpointTest {
     @Test
     void shouldAddQuote() throws Exception {
@@ -110,11 +105,5 @@ public class QuoteEndpointTest extends EndpointTest {
                 .andExpect(jsonPath("$.content.[0].id").value(1))
                 .andExpect(jsonPath("$.content.[1].id").value(3))
                 .andExpect(jsonPath("$.content.[2].id").doesNotExist());
-    }
-
-    private byte[] fromFile(String path) throws IOException {
-        byte[] bytes = new ClassPathResource(path).getInputStream().readAllBytes();
-        System.out.println(new String(bytes, StandardCharsets.UTF_8));
-        return bytes;
     }
 }
