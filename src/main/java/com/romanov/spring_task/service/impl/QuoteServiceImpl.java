@@ -68,7 +68,7 @@ public class QuoteServiceImpl implements QuoteService {
     @Override
     public QuoteOutput modifyQuote(QuoteUpdateInput input) {
         QuoteEntity entity = repository.findById(input.getId())
-                .orElseThrow(() -> new EntityNotFoundException("Entity with id: " + input.getId() + " not found!"));
+                .orElseThrow(() -> new EntityNotFoundException("Quote with id: " + input.getId() + " not found!"));
         entity.setContent(Content.getById(input.getContentId()));
         entity.setUpdateDate(LocalDate.now());
         entity.setUser(userMapper.convert(input.getUser()));
@@ -78,6 +78,9 @@ public class QuoteServiceImpl implements QuoteService {
 
     @Override
     public void delete(Long id) {
-        repository.deleteById(id);
+        repository.findById(id).ifPresentOrElse(repository::delete,
+                () -> {
+                    throw new EntityNotFoundException("Quote with id: " + id + " not found!");
+                });
     }
 }

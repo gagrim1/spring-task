@@ -15,6 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserEndpointImpl implements UserEndpoint {
     private final UserService service;
 
+    /**
+     * Saves a given input data of user to database
+     *
+     * @param input - input data of user
+     * @return UserOutput - data of saved user
+     */
     @Override
     @PostMapping
     public UserOutput create(UserInput input) {
