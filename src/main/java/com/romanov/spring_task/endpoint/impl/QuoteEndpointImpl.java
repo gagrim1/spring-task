@@ -24,13 +24,13 @@ public class QuoteEndpointImpl implements QuoteEndpoint {
 
     @Override
     @GetMapping("/all-asc")
-    public Page<QuoteOutput> getAllAsc(Integer page, Integer size) {
+    public Page<QuoteOutput> getAllAsc(@RequestParam Integer page, @RequestParam Integer size) {
         return service.getAll(page, size, Sort.by(Sort.Direction.ASC, "updateDate"));
     }
 
     @Override
     @GetMapping("/all-desc")
-    public Page<QuoteOutput> getAllDesc(Integer page, Integer size) {
+    public Page<QuoteOutput> getAllDesc(@RequestParam Integer page, @RequestParam Integer size) {
         return service.getAll(page, size, Sort.by(Sort.Direction.DESC, "updateDate"));
     }
 

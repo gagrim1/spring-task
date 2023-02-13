@@ -1,5 +1,6 @@
 package com.romanov.spring_task.model.entity;
 
+import com.romanov.spring_task.model.enumurated.Content;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -13,7 +14,7 @@ public class QuoteEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "content")
-    private String content;
+    private Content content;
     @Column(name = "update_date")
     private LocalDate updateDate;
     @ManyToOne

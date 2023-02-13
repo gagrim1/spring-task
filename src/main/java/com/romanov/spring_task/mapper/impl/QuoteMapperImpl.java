@@ -10,7 +10,7 @@ public class QuoteMapperImpl implements QuoteMapper {
     @Override
     public QuoteOutput convert(QuoteEntity entity) {
         return new QuoteOutput(entity.getId(),
-                entity.getContent(),
+                entity.getContent().getName(),
                 entity.getUpdateDate().toString(),
                 entity.getUser().getName(),
                 entity.getVote().getName());

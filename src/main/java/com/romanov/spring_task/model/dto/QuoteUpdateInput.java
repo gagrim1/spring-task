@@ -5,7 +5,7 @@ import lombok.Value;
 @Value
 public class QuoteUpdateInput {
     Long id;
-    String content;
+    Short contentId;
     UserOutput user;
     VoteOutput vote;
 }

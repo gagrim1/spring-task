@@ -8,6 +8,7 @@ import com.romanov.spring_task.model.dto.QuoteInput;
 import com.romanov.spring_task.model.dto.QuoteOutput;
 import com.romanov.spring_task.model.dto.QuoteUpdateInput;
 import com.romanov.spring_task.model.entity.QuoteEntity;
+import com.romanov.spring_task.model.enumurated.Content;
 import com.romanov.spring_task.repository.QuoteRepository;
 import com.romanov.spring_task.service.QuoteService;
 import lombok.RequiredArgsConstructor;
@@ -29,11 +30,19 @@ public class QuoteServiceImpl implements QuoteService {
     @Override
     public QuoteOutput add(QuoteInput input) {
         QuoteEntity entity = new QuoteEntity();
-        entity.setContent(input.getContent());
+        entity.setContent(Content.getById(input.getContentId()));
         entity.setUpdateDate(LocalDate.now());
         entity.setUser(userMapper.convert(input.getUser()));
         entity.setVote(voteMapper.convert(input.getVote()));
         return mapper.convert(repository.save(entity));
+    }
+
+    @Override
+    public List<QuoteOutput> getAllByVoteId(Long voteId) {
+        return repository.findAllByVoteId(voteId)
+                .stream()
+                .map(mapper::convert)
+                .toList();
     }
 
     @Override
@@ -60,7 +69,7 @@ public class QuoteServiceImpl implements QuoteService {
     public QuoteOutput modifyQuote(QuoteUpdateInput input) {
         QuoteEntity entity = repository.findById(input.getId())
                 .orElseThrow(() -> new EntityNotFoundException("Entity with id: " + input.getId() + " not found!"));
-        entity.setContent(input.getContent());
+        entity.setContent(Content.getById(input.getContentId()));
         entity.setUpdateDate(LocalDate.now());
         entity.setUser(userMapper.convert(input.getUser()));
         entity.setVote(voteMapper.convert(input.getVote()));

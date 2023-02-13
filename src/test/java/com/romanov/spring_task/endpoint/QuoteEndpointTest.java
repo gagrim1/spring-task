@@ -48,7 +48,7 @@ public class QuoteEndpointTest extends EndpointTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.content.[0].id").value(1))
-                .andExpect(jsonPath("$.content.[0].content").value("content1"));
+                .andExpect(jsonPath("$.content.[0].content").value("UPVOTE"));
 
         mockMvc.perform(patch("/quotes")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -59,7 +59,7 @@ public class QuoteEndpointTest extends EndpointTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.content.[0].id").value(1))
-                .andExpect(jsonPath("$.content.[0].content").value("content4"));
+                .andExpect(jsonPath("$.content.[0].content").value("UPVOTE"));
     }
 
     @Test

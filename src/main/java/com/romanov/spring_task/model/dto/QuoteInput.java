@@ -4,7 +4,7 @@ import lombok.Value;
 
 @Value
 public class QuoteInput {
-    String content;
+    Short contentId;
     UserOutput user;
     VoteOutput vote;
 }
