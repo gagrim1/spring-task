@@ -13,6 +13,15 @@ public class UserMapperImpl implements UserMapper {
     private final static DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("d/MM/yyyy");
 
     @Override
+    public UserOutput convert(UserEntity entity) {
+        return new UserOutput(entity.getId(),
+                entity.getName(),
+                entity.getEmail(),
+                entity.getPassword(),
+                entity.getCreationDate().format(FORMATTER));
+    }
+
+    @Override
     public UserEntity convert(UserOutput output) {
         UserEntity entity = new UserEntity();
         entity.setId(output.getId());
