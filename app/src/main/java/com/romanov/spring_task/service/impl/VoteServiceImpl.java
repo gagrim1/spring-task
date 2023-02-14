@@ -1,6 +1,7 @@
 package com.romanov.spring_task.service.impl;
 
 import com.romanov.spring_task.model.dto.QuoteOutput;
+import com.romanov.spring_task.model.entity.VoteEntity;
 import com.romanov.spring_task.model.enumurated.Content;
 import com.romanov.spring_task.repository.VoteRepository;
 import com.romanov.spring_task.service.QuoteService;
@@ -18,7 +19,9 @@ public class VoteServiceImpl implements VoteService {
 
     @Override
     public void create(String name) {
-
+        VoteEntity entity = new VoteEntity();
+        entity.setName(name);
+        repository.save(entity);
     }
 
     @Override
