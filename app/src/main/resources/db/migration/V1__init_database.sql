@@ -6,7 +6,7 @@ CREATE TABLE votes (
 CREATE TABLE users (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(64)
-)
+);
 
 CREATE TABLE quotes (
     id BIGSERIAL PRIMARY KEY,
