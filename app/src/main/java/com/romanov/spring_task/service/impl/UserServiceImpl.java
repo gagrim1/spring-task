@@ -1,5 +1,6 @@
 package com.romanov.spring_task.service.impl;
 
+import com.romanov.spring_task.exception.EntityExistsException;
 import com.romanov.spring_task.mapper.UserMapper;
 import com.romanov.spring_task.model.dto.UserInput;
 import com.romanov.spring_task.model.dto.UserOutput;
@@ -21,7 +22,8 @@ public class UserServiceImpl implements UserService {
     public UserOutput create(UserInput input) {
         repository.findByNameAndEmail(input.getName(), input.getEmail())
                 .ifPresent(value -> {
-                    throw new RuntimeException("");
+                    throw new EntityExistsException("User with username: " + input.getName() +
+                            " and email: " + input.getEmail() + " already exists!");
                 });
         UserEntity entity = new UserEntity();
         entity.setName(input.getName());

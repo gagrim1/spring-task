@@ -1,5 +1,6 @@
 package com.romanov.spring_task.service.impl;
 
+import com.romanov.spring_task.exception.EntityExistsException;
 import com.romanov.spring_task.exception.EntityNotFoundException;
 import com.romanov.spring_task.mapper.QuoteMapper;
 import com.romanov.spring_task.mapper.UserMapper;
@@ -30,7 +31,8 @@ public class QuoteServiceImpl implements QuoteService {
     @Override
     public QuoteOutput add(QuoteInput input) {
         repository.findByUserIdAndVoteId(input.getUser().getId(), input.getVote().getId()).ifPresent(value -> {
-            throw new RuntimeException("");
+            throw new EntityExistsException("Quote with user: " + input.getUser().getName() +
+                            " and vote: " + input.getVote().getName() + " already exists!");
         });
         QuoteEntity entity = new QuoteEntity();
         entity.setContent(Content.getById(input.getContentId()));

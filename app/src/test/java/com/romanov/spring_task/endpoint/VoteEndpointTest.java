@@ -10,13 +10,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Sql(value = {
-        "/endpoint/truncate.sql",
-        "/endpoint/vote_init.sql",
-        "/endpoint/user_init.sql",
-        "/endpoint/quote_init.sql"
+        "/endpoint/sql/vote_init.sql",
+        "/endpoint/sql/user_init.sql",
+        "/endpoint/sql/quote_init.sql"
 },
         executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
-@Sql(value = "/endpoint/truncate.sql",
+@Sql(value = "/endpoint/sql/truncate.sql",
         executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 public class VoteEndpointTest extends EndpointTest {
     @Test
