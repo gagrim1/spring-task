@@ -1,1 +1,2 @@
-INSERT INTO votes (id, name) VALUES (1, 'vote');
+INSERT INTO votes (name) VALUES ('vote'),
+('vote2');

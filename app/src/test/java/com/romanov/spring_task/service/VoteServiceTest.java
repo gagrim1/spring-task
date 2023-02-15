@@ -77,9 +77,9 @@ public class VoteServiceTest {
                 "user",
                 "name");
         List<QuoteOutput> quotes = new ArrayList<>();
-        quotes.add(upvote);
-        quotes.add(upvote);
-        quotes.add(upvote);
+        quotes.add(downvote);
+        quotes.add(downvote);
+        quotes.add(downvote);
         quotes.add(upvote);
 
         Mockito.when(quoteService.getAllByVoteId(1L)).thenReturn(quotes);

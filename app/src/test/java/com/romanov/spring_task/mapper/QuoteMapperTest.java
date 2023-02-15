@@ -31,7 +31,8 @@ public class QuoteMapperTest {
         QuoteEntity entity = new QuoteEntity();
         entity.setId(1L);
         entity.setContent(Content.UPVOTE);
-        entity.setUpdateDate(LocalDate.now());
+        String dateString = LocalDate.now().format(FORMATTER);
+        entity.setUpdateDate(LocalDate.parse(dateString, FORMATTER));
         entity.setUser(userEntity);
         entity.setVote(voteEntity);
 

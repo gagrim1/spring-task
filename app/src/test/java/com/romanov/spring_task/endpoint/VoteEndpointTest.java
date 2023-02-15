@@ -10,6 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Sql(value = {
+        "/endpoint/truncate.sql",
         "/endpoint/vote_init.sql",
         "/endpoint/user_init.sql",
         "/endpoint/quote_init.sql"
