@@ -1,0 +1,25 @@
+@startuml
+entity user {
+    id: Integer
+    name: String
+    email: String
+    password: String
+    date_of_creation: Date
+}
+
+entity quote {
+    id: Integer
+    content: String
+    date_of_update: Date
+    user_id: Integer
+    vote_id: Integer
+}
+
+entity vote {
+    id: Integer
+    name: String
+}
+
+quote }|--|| vote
+user ||--|{ quote
+@enduml
