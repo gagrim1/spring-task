@@ -29,6 +29,9 @@ public class QuoteServiceImpl implements QuoteService {
 
     @Override
     public QuoteOutput add(QuoteInput input) {
+        repository.findByUserIdAndVoteId(input.getUser().getId(), input.getVote().getId()).ifPresent(value -> {
+            throw new RuntimeException("");
+        });
         QuoteEntity entity = new QuoteEntity();
         entity.setContent(Content.getById(input.getContentId()));
         entity.setUpdateDate(LocalDate.now());
@@ -60,7 +63,7 @@ public class QuoteServiceImpl implements QuoteService {
         List<QuoteEntity> list = repository.findAll();
         Long randomIndex = new Random()
                 .nextLong(list.size());
-        QuoteEntity randomQuote = repository.findAll().get(randomIndex.intValue());
+        QuoteEntity randomQuote = list.get(randomIndex.intValue());
 
         return mapper.convert(randomQuote);
     }
